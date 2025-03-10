@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
+// Defined static files folder
+app.use(express.static("public"));
 
 // Defined "Homepage" route
 app.get("/", (req, res) => {
