@@ -1,5 +1,5 @@
 // Importing data
-const filmsDb = require("../data/database");
+const filmsDb = require("../data/moviesDatabase");
 
 // Index function
 function index(req, res) {

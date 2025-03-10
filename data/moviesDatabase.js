@@ -1,6 +1,7 @@
-// Importing MySQL
+// Import MySQL2 library to establish a database connection
 const mysql = require("mysql2");
 
+// Create a database connection
 const dbConnection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -8,6 +9,7 @@ const dbConnection = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
+// Connect to MySQL database
 dbConnection.connect((err) => {
     if (err) throw err;
     console.log("Connected to MySQL!");
