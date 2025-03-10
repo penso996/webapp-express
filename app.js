@@ -3,32 +3,30 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
-// Defined static files folder
+// Serve static files from "public" folder
 app.use(express.static("public"));
 
+// ROUTES
 // Defined "Homepage" route
 app.get("/", (req, res) => {
     res.send("Homepage");
 });
-
-// Importing movies router
+// Import and define /movies route
 const moviesRouter = require("./routers/moviesRouter.js");
-// Defined /movies route
 app.use("/movies", moviesRouter);
 
-
-// Importing 404 error handling module
+// MIDDLEWARES
+// Import error handling middlewares
 const notFound = require("./middlewares/notFound.js");
-// Defined 404 error handling behaviour
-app.use(notFound);
-
-// Importing 500 error handling module
 const errorsHandler = require("./middlewares/errorsHandler.js");
-// Defined 500 error handling behaviour
+
+// 404 error handling middleware
+app.use(notFound);
+// 500 error handling middleware
 app.use(errorsHandler);
 
 
-// Starting server on specified port
+// Start server
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Server running on port ${port}`);
 });
