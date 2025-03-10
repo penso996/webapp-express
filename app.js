@@ -15,15 +15,15 @@ const moviesRouter = require("./routers/moviesRouter.js");
 app.use("/movies", moviesRouter);
 
 
-// Importing 404 error handling
-//const notFound = require("./middlewares/notFound.js");
+// Importing 404 error handling module
+const notFound = require("./middlewares/notFound.js");
 // Defined 404 error handling behaviour
-//app.use(notFound);
+app.use(notFound);
 
-// Importing 500 error handling
-//const errorsHandler = require("./middlewares/errorsHandler.js");
+// Importing 500 error handling module
+const errorsHandler = require("./middlewares/errorsHandler.js");
 // Defined 500 error handling behaviour
-//app.use(errorsHandler);
+app.use(errorsHandler);
 
 
 // Starting server on specified port
