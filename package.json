@@ -1,0 +1,29 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "description": "film blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "watch": "node --watch app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penso996/webapp-express.git"
+  },
+  "keywords": [
+    "webapp",
+    "boolean",
+    "film"
+  ],
+  "author": "Andrea Penso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/penso996/webapp-express/issues"
+  },
+  "homepage": "https://github.com/penso996/webapp-express#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
