@@ -1,4 +1,4 @@
-// Importing express for routing
+// Importing Express for routing
 const express = require("express");
 const moviesRouter = express.Router();
 
@@ -6,22 +6,17 @@ const moviesRouter = express.Router();
 const moviesController = require("../controllers/moviesController");
 
 // FILMS CRUD
-// index (imported)
+// index
 moviesRouter.get("/", moviesController.index);
-
-// show (imported)
+// show
 moviesRouter.get("/:id", moviesController.show);
-
-// store (imported)
+// store
 moviesRouter.post("/", moviesController.store);
-
-// update (imported)
+// update
 moviesRouter.put("/:id", moviesController.update);
-
-// modify (imported)
+// modify
 moviesRouter.patch("/:id", moviesController.modify);
-
-// destroy (imported)
+// destroy
 moviesRouter.delete("/:id", moviesController.destroy);
 
 
