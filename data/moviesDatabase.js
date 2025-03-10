@@ -15,4 +15,6 @@ dbConnection.connect((err) => {
     console.log("Connected to MySQL!");
 });
 
+
+// Export database connection
 module.exports = dbConnection;
