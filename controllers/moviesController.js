@@ -3,7 +3,17 @@ const filmsDb = require("../data/database");
 
 // Index function
 function index(req, res) {
+    // SQL query to show all movies
+    const sql = `SELECT
+	    movies.id,
+	    movies.title
+    FROM moviess`;
 
+    // Execute query
+    filmsDb.query(sql, (err, movies) => {
+        if (err) return res.status(500).json({ error: "Database query failed" });
+        res.json(movies);
+    });
 }
 
 // Show function
