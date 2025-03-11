@@ -6,19 +6,22 @@ const port = process.env.PORT;
 // Serve static files from "public" folder
 app.use(express.static("public"));
 
+// MIDDLEWARES
+// Import image path middleware
+const setImagePath = require("./middlewares/setImagePath.js");
+// Import error handling middlewares
+const notFound = require("./middlewares/notFound.js");
+const errorsHandler = require("./middlewares/errorsHandler.js");
+
 // ROUTES
 // Defined "Homepage" route
 app.get("/", (req, res) => {
     res.send("Homepage");
 });
-// Import and define /movies route
-const moviesRouter = require("./routers/moviesRouter.js");
-app.use("/movies", moviesRouter);
 
-// MIDDLEWARES
-// Import error handling middlewares
-const notFound = require("./middlewares/notFound.js");
-const errorsHandler = require("./middlewares/errorsHandler.js");
+// Import and define /movies route with image path middleware
+const moviesRouter = require("./routers/moviesRouter.js");
+app.use("/movies", setImagePath, moviesRouter);
 
 // 404 error handling middleware
 app.use(notFound);

@@ -5,9 +5,7 @@ const moviesDatabase = require("../data/moviesDatabase");
 function index(req, res) {
 
     // SQL query to retrieve all movies
-    const moviesQuery = `SELECT
-        movies.id,
-        movies.title
+    const moviesQuery = `SELECT *
     FROM movies`;
 
     // Execute SQL query
@@ -22,6 +20,11 @@ function index(req, res) {
             return res.status(404).json({ error: "No movies found" });
         }
 
+        // Add image path to each movie
+        movies.forEach(movie => {
+            movie.image = `${req.imagePath}${movie.image}`;
+        });
+
         // Return movies data as JSON
         res.json(movies);
     });
@@ -34,23 +37,12 @@ function show(req, res) {
     const id = parseInt(req.params.id);
 
     // SQL query to retrieve the movie with the given ID
-    const movieQuery = `SELECT
-        movies.id,
-        movies.title,
-        movies.director,
-        movies.genre,
-        movies.release_year,
-        movies.abstract
+    const movieQuery = `SELECT *
     FROM movies
     WHERE movies.id = ?`;
 
     // SQL query to retrieve the reviews of the given movie
-    const reviewsQuery = `SELECT
-        reviews.id,
-        reviews.movie_id,
-        reviews.name,
-        reviews.vote,
-        reviews.text
+    const reviewsQuery = `SELECT *
     FROM reviews
     WHERE reviews.movie_id = ?`;
 
