@@ -68,6 +68,8 @@ function show(req, res) {
                 return res.status(500).json({ error: "Failed to retrieve reviews data" });
             }
 
+            // Add image path to movie
+            movie.image = `${req.imagePath}${movie.image}`
             // Add reviews to the movie (empty array if no reviews)
             movie.reviews = reviews || [];
 
