@@ -22,7 +22,7 @@ function index(req, res) {
 
         // Add image path to each movie
         movies.forEach(movie => {
-            movie.image = `${req.imagePath}${movie.image}`;
+            movie.image = movie.image ? `${req.imagePath}${movie.image}` : "";
         });
 
         // Return movies data as JSON
@@ -69,7 +69,8 @@ function show(req, res) {
             }
 
             // Add image path to movie
-            movie.image = `${req.imagePath}${movie.image}`
+            movie.image = movie.image ? `${req.imagePath}${movie.image}` : "";
+
             // Add reviews to the movie (empty array if no reviews)
             movie.reviews = reviews || [];
 
