@@ -34,7 +34,7 @@ function index(req, res) {
 function show(req, res) {
 
     // Read ID from URL
-    const id = parseInt(req.params.id);
+    const { id } = req.params;
 
     // SQL query to retrieve the movie with the given ID
     const movieQuery = `SELECT *
@@ -80,9 +80,29 @@ function show(req, res) {
     });
 }
 
-// Store function
-function store(req, res) {
+// Store Review function
+function storeReview(req, res) {
 
+    // Read ID from URL
+    const { id } = req.params;
+    // Read other data from request body
+    const { name, vote, text } = req.body;
+
+    // SQL query to insert a new review
+    const insertReviewSql = `INSERT INTO reviews (name, text, vote, movie_id) VALUES (?, ?, ?, ?)`;
+
+    // Execute SQL query for storing a review
+    moviesDatabase.query(insertReviewSql, [name, text, vote, id], (err, results) => {
+        if (err) {
+            console.error("Failed to store review:", err);
+            return res.status(500).json({ error: "Failed to store review" });
+        }
+
+        // Set response status
+        res.status(201);
+        // Send JSON response
+        res.json({ message: "Review added", review_id: results.insertId });
+    });
 }
 
 // Update function
@@ -102,4 +122,4 @@ function destroy(req, res) {
 
 
 // Export controller module
-module.exports = { index, show, store, update, modify, destroy };
+module.exports = { index, show, storeReview, update, modify, destroy };

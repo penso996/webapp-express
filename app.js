@@ -10,6 +10,9 @@ app.use(cors({ origin: ["http://localhost:5173"] }));
 // Serve static files from "public" folder
 app.use(express.static("public"));
 
+// Enabling JSON request body parsing
+app.use(express.json());
+
 // MIDDLEWARES
 // Import image path middleware
 const setImagePath = require("./middlewares/setImagePath.js");

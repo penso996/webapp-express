@@ -6,12 +6,12 @@ const moviesRouter = express.Router();
 const moviesController = require("../controllers/moviesController");
 
 // FILMS CRUD
-// index
+// index (movies)
 moviesRouter.get("/", moviesController.index);
-// show
+// show (movie)
 moviesRouter.get("/:id", moviesController.show);
-// store
-moviesRouter.post("/", moviesController.store);
+// store (review)
+moviesRouter.post("/:id/reviews", moviesController.storeReview);
 // update
 moviesRouter.put("/:id", moviesController.update);
 // modify
