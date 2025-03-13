@@ -5,7 +5,7 @@ const port = process.env.PORT;
 const cors = require("cors");
 
 // Defined middleware to enable CORS only for the frontend 
-app.use(cors({ origin: ["http://localhost:5173"] }));
+app.use(cors({ origin: process.env.FE_APP }));
 
 // Serve static files from "public" folder
 app.use(express.static("public"));
