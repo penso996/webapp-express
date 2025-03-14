@@ -100,10 +100,9 @@ function store(req, res) {
         }
 
         // Set response status
-        res.status(201).json({
-            message: "Movie added successfully!",
-            movie_id: result.insertId
-        });
+        res.status(201)
+        // Send JSON response
+        res.json({ message: "Movie added successfully!", movie_id: result.insertId });
     });
 }
 
