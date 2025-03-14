@@ -80,6 +80,33 @@ function show(req, res) {
     });
 }
 
+// Store Movie function
+function store(req, res) {
+
+    // Read movie data from request body
+    const { title, director, genre, release_year, abstract } = req.body;
+    // Handle image file name from Multer middleware
+    const imageName = req.file ? req.file.filename : null;
+
+    // SQL query to insert a new movie
+    const insertMovieSql = `INSERT INTO movies (title, director, genre, release_year, abstract, image)
+        VALUES (?, ?, ?, ?, ?, ?)`;
+
+    // Execute SQL query
+    moviesDatabase.query(insertMovieSql, [title, director, genre, release_year, abstract, imageName], (err, result) => {
+        if (err) {
+            console.error("Failed to store movie:", err);
+            return res.status(500).json({ error: "Failed to store movie" });
+        }
+
+        // Set response status
+        res.status(201).json({
+            message: "Movie added successfully!",
+            movie_id: result.insertId
+        });
+    });
+}
+
 // Store Review function
 function storeReview(req, res) {
 
@@ -105,21 +132,6 @@ function storeReview(req, res) {
     });
 }
 
-// Update function
-function update(req, res) {
-
-}
-
-// Modify function
-function modify(req, res) {
-
-}
-
-// Destroy function
-function destroy(req, res) {
-
-}
-
 
 // Export controller module
-module.exports = { index, show, storeReview, update, modify, destroy };
+module.exports = { index, show, store, storeReview };
